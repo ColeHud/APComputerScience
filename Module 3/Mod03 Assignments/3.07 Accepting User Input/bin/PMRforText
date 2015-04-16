@@ -1,0 +1,18 @@
+PROJECT TITLE: Text Message Coder
+PURPOSE OF PROJECT: Abbreviate text messages
+VERSION or DATE: Version 2, 09/30/14
+AUTHORS: C.Hudson
+
+***************************   PMR  **************************************
+ 
+<+s>: Adding in the scanner class was pretty simple. I didn't hardly have to change anything.
+This was really the logical next step for where the program should go, and I think that it's a great
+way to learn how to use the Scanner class. 
+      
+<-s>: Like I said in my other PMR, it took me forever to realize that I had to switch IDE.
+I kept on thinking it was my mistake, but the code that I wrote didn't run in Bluej, but it did
+run in Eclipse.
+           
+*************************************************************************
+In the future I would probably want to add in the ability to expand on a text message, where if someone's 
+message was: "brb I gtg", it would then return "be right back I got to go".

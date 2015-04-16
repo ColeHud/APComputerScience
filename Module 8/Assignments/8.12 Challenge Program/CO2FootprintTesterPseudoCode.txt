@@ -1,0 +1,10 @@
+create array of CO2Footprint
+
+add >=5 objects to it
+
+invoke individual methods
+
+print out header from one of the objects
+
+for each object in the array
+	print out data

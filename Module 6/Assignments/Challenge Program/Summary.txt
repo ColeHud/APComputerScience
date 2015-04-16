@@ -1,0 +1,12 @@
+                      Category     Pressure (mb)     Wind Speed (mph)
+=====================================================================
+Average                   2            963                104       
+Maximum                   5            1002               172       
+Minimum                   1            882                74        
+
+
+Number of Category 1: 26
+Number of Category 2: 11
+Number of Category 3: 14
+Number of Category 4: 4
+Number of Category 5: 4

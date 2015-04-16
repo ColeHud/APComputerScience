@@ -1,0 +1,13 @@
+PROJECT TITLE: 04.01 Algorithm
+PURPOSE OF PROJECT: Describe an algorithm that could be used to decode a secret message
+VERSION or DATE: 10/10/2014     	V1
+AUTHORS: C.Hudson
+
+***************************   PMR  **************************************
+ 
+<+s>: Once I figured out a plan of how I was going to complete this assignment, everything went pretty well. I had a good idea of an algorithm that I could use.
+      
+<-s>: It took me a while to get to the point in time where I had my idea. I started off this project by trying to decode the message, with which I was unsuccessful.
+           
+*************************************************************************
+It worked out OK this time trying to solve the problem first, but in the future I should probably complete the assignment and then have fun with the problem.

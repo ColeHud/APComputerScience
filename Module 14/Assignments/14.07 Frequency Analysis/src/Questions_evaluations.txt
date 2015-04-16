@@ -1,0 +1,33 @@
+Evaluate the Process
+====================================
+1.) What difficulties did you run into writing the frequency analysis program? How did you resolve these problems?
+-At first I struggled with how to match values from the input text to part of the array. If this were javascript I 
+would've used a dictionary, but instead I had to use a different class. After some quick googling I found that a HashMap
+has exactly what I needed. After a few minutes I had a HashMap integrated and running smoothly.
+
+2.)How closely did the frequencies of letters in the plaintext and the ciphertext correspond? What could be done to 
+improve the accuracy of the correspondence.
+-The letter frequenices typically were within about 1% of each other. One problem was that these two text samples were
+from different sources, so the vocabulary would be slightly different. This could be solved by getting the plaintext from
+the same source as the ciphertext. Another that could have helped would be to get a larger sample size of each text. This
+would make more precise values.
+
+3.)Propose an extension to this project that would allow the computer to do all the work so that you only have to evaluate
+whether the decoded message makes sense.
+-The way that I went through this was:
+[1]->Start deciphering only a small chunk of the problem to make things easier.
+[2]->Begin deciphering small (2 letter) words first. Draw from possibilities of 2-letter words and the given frequencies. 
+[3]->After the smaller words have been deciphered, apply the same key to the larger words. The message should now contain
+partially formed words.
+[4]->Go through and guess (drawing from a vocabulary or online dictionary in the computer's case) at what each word should be based on the chunks filled in. Match 
+up the completed words with the partial words. Use these to add to the key.
+[5]->Once the deciphering is almost over, fill in the last few letters using the frequency chart.
+[6]->DECIPHERED!
+
+Paragraph version:
+
+I first started off deciphering the message by isolating the first line. I went through all of the smaller words on that
+line and deciphered them based on the frequency charts and by my list of known smaller words. Once I had these small words
+deciphered, I began applying that key to the larger words. After the key had been applied I went through and guessed what 
+each word was, based on my vocabulary. I then applied these guesses to the key. After repeating that last step a few more
+times, I was left with a deciphered message.

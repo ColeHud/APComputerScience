@@ -1,0 +1,37 @@
+info needed 
+=================================================================
+Gas yearly  |  given
+=================================================================
+electricity |  not completely given, we're given average price and bill,
+            |  use 
+               emissions = (avgBill / avgPrice) * 1.37 * 12;
+=================================================================
+waste       | calculated from the kind of recycling they do and the number
+            | of people in their family
+            | emission = people * 1018.0
+=================================================================
+recycling   | 
+reduction   |
+			        if(paper)
+					{
+						wasteReduction += 184.0 * people;
+					}
+					if(plastic)
+					{
+						wasteReduction += 25.6 * people;
+					}
+					if(glass)
+					{
+						wasteReduction += 46.6 * people;
+					}
+					if(cans)
+					{
+						wasteReduction += 165.8 * people;
+					}
+
+			|
+			|
+=================================================================
+new bulbs   | emissionReduction = numberOfBulbs * 1.37 * 73
+=================================================================
+

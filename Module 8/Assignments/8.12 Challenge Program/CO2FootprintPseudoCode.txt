@@ -1,0 +1,79 @@
+
+
+Make variables:
+
+annualGasolineUsed
+avgElectricBill
+avgElectricityPrice
+people
+recyclePaper
+recyclePlastic
+recycleGlass
+recycleCans
+bulbsReplaced
+
+annualGasolineUsed
+electricityCO2emissions
+wasteEmissions
+
+recyclingReduction
+newBulbsReduction
+
+CO2Footprint
+
+
+getter methods for variables
+
+
+constructor(annualGasolineUsed, averageElectricityBill, averageElectricityPrice, numberOfPeopleInHome, recyclePaper, recyclePlastic, recycleCans, numberOfLightbulbsReplaced)
+{
+	attach each of these params to it's corresponding variable
+}
+
+
+function calcElectricityEmissions()
+{
+	emissions = (avgBill / avgPrice) * 1.37 * 12
+}
+
+function calcWasteEmissions()
+{
+	waste = 1018 * people
+}
+
+function calcRecyclingReduction()
+{
+		if(paper)
+		{
+			wasteReduction += 184.0 * people;
+		}
+		if(plastic)
+		{
+			wasteReduction += 25.6 * people;
+		}
+		if(glass)
+		{
+			wasteReduction += 46.6 * people;
+		}
+		if(cans)
+		{
+			wasteReduction += 165.8 * people;
+		}
+}
+
+function calcBulbReduction()
+{
+	reduction = numberOfBulbs * 1.37 * 73
+}
+
+
+function printData()
+{
+	print out data
+}
+
+static function printHead()
+{
+	print header
+}
+

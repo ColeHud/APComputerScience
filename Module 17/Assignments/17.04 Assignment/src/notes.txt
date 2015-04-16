@@ -1,0 +1,36 @@
+notes
+
+
+mergeTitles ->
+
+int aIndex = 0;
+		int bIndex = 0;
+
+		for(int i = 0; i < result.length; i++)
+		{
+			Movie4 itemToAdd = new Movie4();
+			boolean withinBounds = aIndex < a.length && bIndex < b.length;
+
+			//a is less than or equal to b
+			if(withinBounds && a[aIndex].getTitle().compareTo(b[bIndex].getTitle()) <= 0)
+			{
+				itemToAdd = a[aIndex];
+				aIndex++;
+			}
+			else if(withinBounds && b[bIndex].getTitle().compareTo(a[aIndex].getTitle()) <= 0)
+			{
+				itemToAdd = b[bIndex];
+				bIndex++;
+			}
+			else if(a.length < b.length)
+			{
+				itemToAdd = b[bIndex];
+				bIndex++;
+			}
+			else if(b.length < a.length)
+			{
+				itemToAdd = a[aIndex];
+				aIndex++;
+			}
+			result[i] = itemToAdd;
+		}

@@ -1,0 +1,81 @@
+
+body {
+	background-image: none
+}
+
+a:link { color: black; text-decoration: none }
+a:visited { color: black; text-decoration: none }
+
+center#banner {
+	display: none
+}
+
+div#container {
+	margin-top: 0px;
+	padding-top: 0px;
+	background-image: url(nav_bg.png);
+	background-repeat: repeat-y;
+}
+
+div#navigation {
+	display: none
+}
+
+div#content {
+	margin-left: 0px;
+	margin-right: 0px;
+	padding-top: 0px
+	line-height: 140%;
+}
+
+div#footer {
+	clear: both;
+	padding: .5em 1em;
+	border-top: 0.5px dashed #999;
+	text-align: right;
+}
+
+blockquote.pagedemo {
+	border-width: 0.5px;
+	background: white
+}
+
+blockquote.demo {
+	border-width: 0.5px;
+	background: white
+}
+
+blockquote.page {
+	border-width: 0.5px;
+	background: white
+}
+
+blockquote.listing {
+	border-width: 0.5px;
+	background: white
+}
+
+blockquote.figure {
+	border-width: 0.5px;
+	background: white
+}
+
+blockquote p.caption span.caption {
+	border-width: 0.5px;
+	background: white
+}
+
+blockquote.frag {
+	border-width: 0.5px;
+	background: white
+}
+
+div.wisdom {
+	border-width: 0.5px;
+	background: white
+}
+
+div.aside {
+	border-width: 0.5px;
+	background: white
+}

@@ -1,0 +1,18 @@
+PROJECT TITLE: Currency Converter
+PURPOSE OF PROJECT: Convert currency from one country to another
+VERSION or DATE: Version 2, 09/30/14
+AUTHORS: C.Hudson
+
+***************************   PMR  **************************************
+ 
+<+s>: Adding in the Scanner class was really easy to do. This form of input is a lot different
+from other methods that I've used in other languages, but I quite like it.
+      
+<-s>: It has taken me forever to get this working! My code was fine, but something went wrong with
+the Bluej editor, so I wrote all of this in Eclipse. I will probably be using eclipse from here
+on out because I like it a lot. 
+           
+*************************************************************************
+Like I said earlier, in the future I will probably be using Eclipse so that I don't run
+into any of Bluej's problems. I looked into it, and Bluej didn't have any problems importing the 
+library, but it quit working when I created the new Scanner(System.in). 

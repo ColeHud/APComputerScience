@@ -1,0 +1,14 @@
+Part 1, question 7:
+    What happens as the number of trials increases? What do you predict for a trial of 100000 coin tosses?
+
+	-> As the number of trials increases, so does the difference between the 2 numbers, but the percentaes get much closer. I predict a trial of 100000 coins to be 50300:49700.
+
+Part 2, question 6:
+	What do you predict for a trial of 100000 coin tosses?
+
+	-> With a 30%:70% coin, I would predict for a trial of 100000 coins that it would end up 30400:69600.
+
+Part 3, question 7:
+	What happens as the number of trials increases?
+
+	-> As the number of trials increased, the percentages got much closer to the original percentages used from the internet source.

@@ -1,0 +1,10 @@
+5.03 Questions:
+
+	10: Do you get the same results each time you run the program?
+		
+		-> Yes, I get the same results each time I run the program.
+		
+	11: Do you think the sample data set in the text file is representative of the actual probability of a family with two children
+	consisting of two boys, a boy and a girl, or two girls?
+	
+		-> Yes, this seems about what I think the probability that each would happen would be. 25% for 2 boys and 2 girls, and about 50% for a mix.

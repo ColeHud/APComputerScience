@@ -1,0 +1,421 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0045)http://www.toves.org/books/java/ch18-recurex/ -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Programming via Java: Recursion examples</title>
+<link href="./examples_files/style.css" type="text/css" rel="stylesheet" media="all">
+<link href="./examples_files/style-print.css" type="text/css" rel="stylesheet" media="print">
+</head>
+
+<body>
+<center id="banner"><em><a href="http://www.toves.org/books/java/index.html">Programming via Java</a></em></center>
+<div id="container">
+<div id="navigation">
+<a href="http://www.toves.org/books/java/index.html">Contents</a>
+<br><a href="http://www.toves.org/books/java/ch01-overview/index.html">1. Programming overview</a>
+<br><a href="http://www.toves.org/books/java/ch02-obj/index.html">2. Variables and objects</a>
+<br><a href="http://www.toves.org/books/java/ch03-moreobj/index.html">3. More on objects</a>
+<br><a href="http://www.toves.org/books/java/ch04-arith/index.html">4. Using numbers</a>
+<br><a href="http://www.toves.org/books/java/ch05-while/index.html">5. Repetition</a>
+<br><a href="http://www.toves.org/books/java/ch06-graphics/index.html">6. Graduating to a bigger sandbox</a>
+<br><a href="http://www.toves.org/books/java/ch07-if/index.html">7. Conditional execution</a>
+<br><a href="http://www.toves.org/books/java/ch08-string/index.html">8. Strings</a>
+<br><a href="http://www.toves.org/books/java/ch09-moreloop/index.html">9. More on loops</a>
+<br><a href="http://www.toves.org/books/java/ch10-moreclass/index.html">10. More on classes</a>
+<br><a href="http://www.toves.org/books/java/ch11-subclass/index.html">11. Subclasses</a>
+<br><a href="http://www.toves.org/books/java/ch12-methods/index.html">12. Defining methods</a>
+<br><a href="http://www.toves.org/books/java/ch13-interact/index.html">13. User interaction</a>
+<br><a href="http://www.toves.org/books/java/ch14-makeclass/index.html">14. Defining classes</a>
+<br><a href="http://www.toves.org/books/java/ch15-makesub/index.html">15. Making subclasses</a>
+<br><a href="http://www.toves.org/books/java/ch16-abstract/index.html">16. Abstract classes &amp; interfaces</a>
+<br><a href="http://www.toves.org/books/java/ch17-recur/index.html">17. Recursion</a>
+<br><a id="here">18. Recursion examples</a>
+<br><a href="http://www.toves.org/books/java/ch19-array/index.html">19. Arrays</a>
+<br><a href="http://www.toves.org/books/java/ch20-sort/index.html">20. Sorting</a>
+<br><a href="http://www.toves.org/books/java/ch21-control/index.html">21. Other control constructs</a>
+<br><a href="http://www.toves.org/books/java/ch22-file/index.html">22. File I/O</a>
+<br><a href="http://www.toves.org/books/java/ch23-main/index.html">23. Beyond the sandbox</a>
+<br><a href="http://www.toves.org/books/java/ch24-swing/index.html">24. Swing basics</a>
+<br><a href="http://www.toves.org/books/java/ch25-swing2/index.html">25. More with Swing</a>
+</div>
+<div id="content">
+
+<h1>Chapter 18. Recursion examples</h1>
+
+<p>When examining recursion in the previous chapter, we looked at
+several examples of recursion, but the problems were always just as easy
+to solve using loops. The chapter promised that eventually we would see
+examples where recursion could do things that can't easily be done
+otherwise. We'll see some examples now.</p>
+
+<h2><a name="1"></a>18.1. Fibonacci numbers</h2>
+
+<p>
+
+But let's start with an example that isn't particularly useful but which
+helps to illustrate a good way of illustrating recursion at work.
+We will build a recursive method to compute numbers in the Fibonacci
+sequence. This infinite sequence starts with 0 and 1, which we'll think
+of as the zeroth and first Fibonacci numbers, and each succeeding
+number is the sum of the two preceding Fibonacci numbers. Thus,
+the second number is 0&nbsp;+&nbsp;1&nbsp;=&nbsp;1.
+And to get the third Fibonacci number, we'd sum the first (1) and the
+second (1) to get 2. And the fourth is the sum of the second (1) and the
+third (2), which is 3. And so on.</p>
+
+<blockquote>
+<table rules="groups"><colgroup span="1"></colgroup><colgroup span="13">
+</colgroup><thead><tr>
+	<td><code class="j"><tt>n</tt></code>:</td>
+	<td style="text-align: center; width: 1.2em">0</td>
+	<td style="text-align: center; width: 1.2em">1</td>
+	<td style="text-align: center; width: 1.2em">2</td>
+	<td style="text-align: center; width: 1.2em">3</td>
+	<td style="text-align: center; width: 1.2em">4</td>
+	<td style="text-align: center; width: 1.2em">5</td>
+	<td style="text-align: center; width: 1.2em">6</td>
+	<td style="text-align: center; width: 1.2em">7</td>
+	<td style="text-align: center; width: 1.2em">8</td>
+	<td style="text-align: center; width: 1.2em">9</td>
+	<td style="text-align: center; width: 1.2em">10</td>
+	<td style="text-align: center; width: 1.2em">11</td>
+	<td>…</td>
+</tr></thead><tbody><tr>
+	<td><code class="j"><tt>n</tt></code>th Fibonacci:</td>
+	<td style="text-align: center; width: 1.2em">0</td>
+	<td style="text-align: center; width: 1.2em">1</td>
+	<td style="text-align: center; width: 1.2em">1</td>
+	<td style="text-align: center; width: 1.2em">2</td>
+	<td style="text-align: center; width: 1.2em">3</td>
+	<td style="text-align: center; width: 1.2em">5</td>
+	<td style="text-align: center; width: 1.2em">8</td>
+	<td style="text-align: center; width: 1.2em">13</td>
+	<td style="text-align: center; width: 1.2em">21</td>
+	<td style="text-align: center; width: 1.2em">34</td>
+	<td style="text-align: center; width: 1.2em">55</td>
+	<td style="text-align: center; width: 1.2em">89</td>
+	<td>…</td>
+</tr></tbody></table>
+</blockquote>
+
+<p>We want to write a method <code class="j"><tt>fib</tt></code> that takes some integer
+<code class="j"><tt>n</tt></code> as a parameter and returns the <code class="j"><tt>n</tt></code>th Fibonacci
+number, where we think of the first 1 as the first Fibonacci number.
+Thus, an invocation of <code class="j"><tt>fib</tt>(6)</code> should return 8,
+and in invocation of <code class="j"><tt>fib</tt>(7)</code> should return 13.</p>
+
+<blockquote class="frag">
+<code class="j"><b>public</b>&nbsp;<b>int</b>&nbsp;<tt>fib</tt>(<b>int</b>&nbsp;<tt>n</tt>)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b>(<tt>n</tt>&nbsp;&lt;=&nbsp;1)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>return</b>&nbsp;<tt>n</tt>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<b>else</b>&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>return</b>&nbsp;<tt>fib</tt>(<tt>n</tt>&nbsp;-&nbsp;1)&nbsp;+&nbsp;<tt>fib</tt>(<tt>n</tt>&nbsp;-&nbsp;2);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}<br>
+</code>
+</blockquote>
+
+<p>
+In talking about recursive procedures such as this, it's useful
+to be able to diagram the various method calls performed. We'll
+do this using a <defn>recursion tree</defn>.
+The recursion tree for
+computing <code class="j"><tt>fib</tt>(5)</code> is in <a href="http://www.toves.org/books/java/ch18-recurex/index.html#fig1">Figure 18.1</a>.</p>
+
+<a name="fig1"></a><blockquote class="figure">
+<p class="caption"><span class="caption"><b>Figure 18.1:</b> Recursion tree for computing <code class="j"><tt>fib</tt>(5)</code>.</span></p>
+<img src="./examples_files/fib-tree.png" width="218" height="158" alt="Recursion tree with 5 at root, 3 and 4 just below that, and so on.">
+</blockquote>
+
+<p>The recursion tree has the original parameter (5 in this case) at the
+top, representing the original method invocation. In the case of
+<code class="j"><tt>fib</tt>(5)</code>, there would be two recursive calls,
+to <code class="j"><tt>fib</tt>(4)</code> and
+<code class="j"><tt>fib</tt>(3)</code>, so we include 4 and 3 in our diagram
+below 5 and draw a line connecting them.
+Of course, <code class="j"><tt>fib</tt>(4)</code> has two recursive calls
+itself, diagrammed in the recursion tree, as does
+<code class="j"><tt>fib</tt>(3)</code>. The complete diagram in <a href="http://www.toves.org/books/java/ch18-recurex/index.html#fig1">Figure 18.1</a>
+depicts all the
+recursive invocation of <code class="j"><tt>fib</tt></code> made in the course of
+computing <code class="j"><tt>fib</tt>(5)</code>. The bottom of the recursion
+tree depicts those cases when there are no recursive calls —
+in this case, when <code class="j"><tt>n</tt>&nbsp;&lt;=&nbsp;1</code>.</p>
+
+<div class="aside">
+<img class="aside" align="left" src="./examples_files/aside.png" alt="Aside">
+<div class="text">
+
+<p>Though Fibonacci computation is a classical example of recursion,
+it has a major
+shortcoming: It's not a compelling example.  There are two reasons for this. First, how often do
+you expect to want to compute Fibonacci numbers?
+(The Fibonacci sequence admittedly appears in surprising circumstances,
+like the numbers of spirals on pine cones and sunflowers,
+but even those cases rarely require computing large Fibonacci numbers.)
+And second, the above recursive method isn't a good
+technique for doing it anyway.  In fact, if you measure the speed
+by the number of additions performed, the recursive technique above
+will take <code class="j"><tt>fib</tt>(<tt>n</tt>)</code>&nbsp;&#8722;&nbsp;1
+additions; to see this, you can take the above
+recursion tree and notice that the overall return value is computed
+as</p>
+
+<center>
+(((1 + 1) + 1) + (1 + 1)) + ((1 + 1) + 1)&nbsp;.
+</center>
+
+<p>Essentially, we are summing <code class="j"><tt>fib</tt>(<tt>n</tt>)</code> 1's, which will require
+<code class="j"><tt>fib</tt>(<tt>n</tt>)</code>&nbsp;&#8722;&nbsp;1
+additions.  A much faster way is to start with the first two
+Fibonaccis and to
+extend the sequence one by one, each time adding the previous
+two numbers, until we reach the <code class="j"><tt>n</tt></code>th Fibonacci. Computing each
+Fibonacci requires just one addition, so the total number of additions
+is <code class="j"><tt>n</tt></code>&nbsp;&#8722;&nbsp;1, which is much less than
+<code class="j"><tt>fib</tt>(<tt>n</tt>)</code>&nbsp;&#8722;&nbsp;1
+for large <code class="j"><tt>n</tt></code>.</p>
+
+</div></div>
+
+<h2><a name="2"></a>18.2. Anagrams</h2>
+
+<p>Our first example is the problem of listing all the rearrangements of
+a word entered by the user. For example, if the user types
+<em>east</em>, the program should list all 24 permutations, including
+<em>eats</em>,
+<em>etas</em>,
+<em>teas</em>, and non-words like
+<em>tsae</em>. If we want the program to work with any length of word,
+there is no straightforward way of performing this task without
+recursion.</p>
+
+<p>With recursion, though, we can do it by thinking through the magical
+assumption. If we had a four-letter word, our magical assumption allows
+us to presume our recursive method knows how to handle all words with
+fewer than four letters. So what we might hope to do is to take each
+letter of the four-letter word, and place that letter at the front of
+all the three-letter permutations of the remaining letters. Given
+<em>east</em>, we would place <em>e</em> in front of all six
+permutations of <em>ast</em> —
+<em>ast</em>,
+<em>ats</em>,
+<em>sat</em>,
+<em>sta</em>,
+<em>tas</em>, and
+<em>tsa</em> — to arrive at
+<em>east</em>,
+<em>eats</em>,
+<em>esat</em>,
+<em>esta</em>,
+<em>etas</em>, and
+<em>etsa</em>. Then we would place <em>a</em> in front of all six
+permutations of <em>est</em>, then <em>s</em> in front of all six
+permutations of <em>eat</em>, and finally <em>t</em> in front of all six
+permutations of <em>eas</em>. Thus, there will be four recursive calls
+to display all permutations of a four-letter word.</p>
+
+<p>Of course, when we're going through the anagrams of <em>ast</em>,
+we would follow the same procedure.
+We first display an <em>a</em> in front of each anagram of <em>st</em>,
+then an <em>s</em> in front of each anagram of <em>at</em>,
+and finally a <em>t</em> in front of each anagram of <em>as</em>.
+As we display each of these anagrams of <em>ast</em>, we want to display
+the letter <em>e</em> before it.</p>
+
+<p>To translate this concept into Java code, our recursive method will need
+two parameters. The more obvious parameter will be the word whose
+anagrams to display, but we also need the letters that we want to
+print before each of those anagrams. At the top level of the recursion,
+we may want to print all anagrams of <em>east</em>, without printing any
+letters before each anagram. But in the next level, one recursive call
+will be to to display
+all anagrams of <em>ast</em>, prefixing each with the letter
+<em>e</em>. And in the next level below that, one recursive call will be
+to display all anagrams of <em>st</em>, prefixing each with the letters
+<em>ea</em>.</p>
+
+<p>The base case of our recursion would be when we reach a word with
+just one letter. Then, we just display the prefix followed by the one
+letter in question.</p>
+
+<p>This is the thought process that leads to the working implementation
+found in <a href="http://www.toves.org/books/java/ch18-recurex/index.html#fig2">Figure 18.2</a>.</p>
+
+<a name="fig2"></a><blockquote class="listing">
+<p class="caption"><span class="caption"><b>Figure 18.2:</b> The <code class="j"><tt>Anagrams</tt></code> program.</span></p>
+<code class="j"><i class="num">&nbsp;&nbsp;1&nbsp;</i>&nbsp;<b>import</b>&nbsp;<tt>acm</tt>.<tt>program</tt>.*;<br>
+<i class="num">&nbsp;&nbsp;2&nbsp;</i>&nbsp;<br>
+<i class="num">&nbsp;&nbsp;3&nbsp;</i>&nbsp;<b>public</b>&nbsp;<b>class</b>&nbsp;<tt>Anagrams</tt>&nbsp;<b>extends</b>&nbsp;<tt>Program</tt>&nbsp;{<br>
+<i class="num">&nbsp;&nbsp;4&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>public</b>&nbsp;<b>void</b>&nbsp;<tt>run</tt>()&nbsp;{<br>
+<i class="num">&nbsp;&nbsp;5&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>String</tt>&nbsp;<tt>word</tt>&nbsp;=&nbsp;<tt>readLine</tt>(<i>"Give&nbsp;a&nbsp;word&nbsp;to&nbsp;anagram:&nbsp;"</i>);<br>
+<i class="num">&nbsp;&nbsp;6&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>printAnagrams</tt>(<i>""</i>,&nbsp;<tt>word</tt>);<br>
+<i class="num">&nbsp;&nbsp;7&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<i class="num">&nbsp;&nbsp;8&nbsp;</i>&nbsp;<br>
+<i class="num">&nbsp;&nbsp;9&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>public</b>&nbsp;<b>void</b>&nbsp;<tt>printAnagrams</tt>(<tt>String</tt>&nbsp;<tt>prefix</tt>,&nbsp;<tt>String</tt>&nbsp;<tt>word</tt>)&nbsp;{<br>
+<i class="num">&nbsp;10&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b>(<tt>word</tt>.<tt>length</tt>()&nbsp;&lt;=&nbsp;1)&nbsp;{<br>
+<i class="num">&nbsp;11&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>println</tt>(<tt>prefix</tt>&nbsp;+&nbsp;<tt>word</tt>);<br>
+<i class="num">&nbsp;12&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<b>else</b>&nbsp;{<br>
+<i class="num">&nbsp;13&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>for</b>(<b>int</b>&nbsp;<tt>i</tt>&nbsp;=&nbsp;0;&nbsp;<tt>i</tt>&nbsp;&lt;&nbsp;<tt>word</tt>.<tt>length</tt>();&nbsp;<tt>i</tt>++)&nbsp;{<br>
+<i class="num">&nbsp;14&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>String</tt>&nbsp;<tt>cur</tt>&nbsp;=&nbsp;<tt>word</tt>.<tt>substring</tt>(<tt>i</tt>,&nbsp;<tt>i</tt>&nbsp;+&nbsp;1);<br>
+<i class="num">&nbsp;15&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>String</tt>&nbsp;<tt>before</tt>&nbsp;=&nbsp;<tt>word</tt>.<tt>substring</tt>(0,&nbsp;<tt>i</tt>);&nbsp;<i class="rem">//&nbsp;letters&nbsp;before&nbsp;cur</i><br>
+<i class="num">&nbsp;16&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>String</tt>&nbsp;<tt>after</tt>&nbsp;=&nbsp;<tt>word</tt>.<tt>substring</tt>(<tt>i</tt>&nbsp;+&nbsp;1);&nbsp;<i class="rem">//&nbsp;letters&nbsp;after&nbsp;cur</i><br>
+<i class="num">&nbsp;17&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>printAnagrams</tt>(<tt>prefix</tt>&nbsp;+&nbsp;<tt>cur</tt>,&nbsp;<tt>before</tt>&nbsp;+&nbsp;<tt>after</tt>);<br>
+<i class="num">&nbsp;18&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<i class="num">&nbsp;19&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<i class="num">&nbsp;20&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<i class="num">&nbsp;21&nbsp;</i>&nbsp;}<br>
+</code>
+</blockquote>
+
+<h2><a name="3"></a>18.3. Sierpinski Carpet</h2>
+
+<p>Recursion can help in displaying complex patterns where the pattern
+appears inside itself as a smaller version. Such patterns, called
+<em>fractals</em> are in fact a visual manifestation of the concept of
+recursion. One well-known pattern is the <em>Sierpinski gasket</em>,
+displayed in <a href="http://www.toves.org/books/java/ch18-recurex/index.html#fig3">Figure 18.3</a>.</p>
+
+<a name="fig3"></a><blockquote class="figure">
+<p class="caption"><span class="caption"><b>Figure 18.3:</b> Running <code class="j"><tt>Sierpinski</tt></code>.</span></p>
+<img src="./examples_files/shot-Sierpinski.png" width="287" height="302">
+</blockquote>
+
+<p>Notice how the Sierpinski gasket is composed of eight smaller
+Sierpinski gaskets arranged around the central white square.
+This is what will lead to our recursion.</p>
+
+<p>Our recursive method will take
+three parameters indicating the position of the gasket to be drawn; the
+first two parameters will indicate the <var>x</var>- and
+<var>y</var>-coordinates of the gasket's upper left corner, and the
+third will indicate how wide and tall the gasket should be.
+The method will immediately draw a white box centered within the gasket,
+whose side length is 1/3 of the overall gasket's side length.
+And then it will draw the eight smaller gaskets surrounding that box,
+each of whose side lengths is also 1/3 of the overall gasket's side
+length.</p>
+
+<p>The base case will be when the side length goes below 3&nbsp;pixels.
+In this case, doing a recursive call is pointless, since the white
+square to be drawn is such a situation is smaller than one pixel.</p>
+
+<p>The full working program appears in
+<a href="http://www.toves.org/books/java/ch18-recurex/index.html#fig4">Figure 18.4</a>.</p>
+
+<a name="fig4"></a><blockquote class="listing">
+<p class="caption"><span class="caption"><b>Figure 18.4:</b> The <code class="j"><tt>Sierpinski</tt></code> program.</span></p>
+<code class="j"><i class="num">&nbsp;&nbsp;1&nbsp;</i>&nbsp;<b>import</b>&nbsp;<tt>java</tt>.<tt>awt</tt>.*;<br>
+<i class="num">&nbsp;&nbsp;2&nbsp;</i>&nbsp;<b>import</b>&nbsp;<tt>acm</tt>.<tt>program</tt>.*;<br>
+<i class="num">&nbsp;&nbsp;3&nbsp;</i>&nbsp;<b>import</b>&nbsp;<tt>acm</tt>.<tt>graphics</tt>.*;<br>
+<i class="num">&nbsp;&nbsp;4&nbsp;</i>&nbsp;<br>
+<i class="num">&nbsp;&nbsp;5&nbsp;</i>&nbsp;<b>public</b>&nbsp;<b>class</b>&nbsp;<tt>Sierpinski</tt>&nbsp;<b>extends</b>&nbsp;<tt>GraphicsProgram</tt>&nbsp;{<br>
+<i class="num">&nbsp;&nbsp;6&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>public</b>&nbsp;<b>void</b>&nbsp;<tt>run</tt>()&nbsp;{<br>
+<i class="num">&nbsp;&nbsp;7&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="rem">//&nbsp;draw&nbsp;black&nbsp;background&nbsp;square</i><br>
+<i class="num">&nbsp;&nbsp;8&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>GRect</tt>&nbsp;<tt>box</tt>&nbsp;=&nbsp;<b>new</b>&nbsp;<tt>GRect</tt>(20,&nbsp;20,&nbsp;242,&nbsp;242);<br>
+<i class="num">&nbsp;&nbsp;9&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>box</tt>.<tt>setFilled</tt>(<b>true</b>);<br>
+<i class="num">&nbsp;10&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>add</tt>(<tt>box</tt>);<br>
+<i class="num">&nbsp;11&nbsp;</i>&nbsp;<br>
+<i class="num">&nbsp;12&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="rem">//&nbsp;recursively&nbsp;draw&nbsp;all&nbsp;the&nbsp;white&nbsp;squares&nbsp;on&nbsp;top</i><br>
+<i class="num">&nbsp;13&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>drawGasket</tt>(20,&nbsp;20,&nbsp;243);<br>
+<i class="num">&nbsp;14&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<i class="num">&nbsp;15&nbsp;</i>&nbsp;<br>
+<i class="num">&nbsp;16&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>public</b>&nbsp;<b>void</b>&nbsp;<tt>drawGasket</tt>(<b>int</b>&nbsp;<tt>x</tt>,&nbsp;<b>int</b>&nbsp;<tt>y</tt>,&nbsp;<b>int</b>&nbsp;<tt>side</tt>)&nbsp;{<br>
+<i class="num">&nbsp;17&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="rem">//&nbsp;draw&nbsp;single&nbsp;white&nbsp;square&nbsp;in&nbsp;middle</i><br>
+<i class="num">&nbsp;18&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>int</b>&nbsp;<tt>sub</tt>&nbsp;=&nbsp;<tt>side</tt>&nbsp;/&nbsp;3;&nbsp;<i class="rem">//&nbsp;length&nbsp;of&nbsp;sub-squares</i><br>
+<i class="num">&nbsp;19&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>GRect</tt>&nbsp;<tt>box</tt>&nbsp;=&nbsp;<b>new</b>&nbsp;<tt>GRect</tt>(<tt>x</tt>&nbsp;+&nbsp;<tt>sub</tt>,&nbsp;<tt>y</tt>&nbsp;+&nbsp;<tt>sub</tt>,&nbsp;<tt>sub</tt>&nbsp;-&nbsp;1,&nbsp;<tt>sub</tt>&nbsp;-&nbsp;1);<br>
+<i class="num">&nbsp;20&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>box</tt>.<tt>setFilled</tt>(<b>true</b>);<br>
+<i class="num">&nbsp;21&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>box</tt>.<tt>setColor</tt>(<tt>Color</tt>.<tt>WHITE</tt>);<br>
+<i class="num">&nbsp;22&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>add</tt>(<tt>box</tt>);<br>
+<i class="num">&nbsp;23&nbsp;</i>&nbsp;<br>
+<i class="num">&nbsp;24&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b>(<tt>sub</tt>&nbsp;&gt;=&nbsp;3)&nbsp;{<br>
+<i class="num">&nbsp;25&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="rem">//&nbsp;now&nbsp;draw&nbsp;eight&nbsp;sub-gaskets&nbsp;around&nbsp;the&nbsp;white&nbsp;square</i><br>
+<i class="num">&nbsp;26&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>drawGasket</tt>(<tt>x</tt>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>y</tt>,&nbsp;<tt>sub</tt>);<br>
+<i class="num">&nbsp;27&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>drawGasket</tt>(<tt>x</tt>&nbsp;+&nbsp;<tt>sub</tt>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>y</tt>,&nbsp;<tt>sub</tt>);<br>
+<i class="num">&nbsp;28&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>drawGasket</tt>(<tt>x</tt>&nbsp;+&nbsp;2&nbsp;*&nbsp;<tt>sub</tt>,&nbsp;<tt>y</tt>,&nbsp;<tt>sub</tt>);<br>
+<i class="num">&nbsp;29&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>drawGasket</tt>(<tt>x</tt>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>y</tt>&nbsp;+&nbsp;<tt>sub</tt>,&nbsp;<tt>sub</tt>);<br>
+<i class="num">&nbsp;30&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>drawGasket</tt>(<tt>x</tt>&nbsp;+&nbsp;2&nbsp;*&nbsp;<tt>sub</tt>,&nbsp;<tt>y</tt>&nbsp;+&nbsp;<tt>sub</tt>,&nbsp;<tt>sub</tt>);<br>
+<i class="num">&nbsp;31&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>drawGasket</tt>(<tt>x</tt>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>y</tt>&nbsp;+&nbsp;2&nbsp;*&nbsp;<tt>sub</tt>,&nbsp;<tt>sub</tt>);<br>
+<i class="num">&nbsp;32&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>drawGasket</tt>(<tt>x</tt>&nbsp;+&nbsp;<tt>sub</tt>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>y</tt>&nbsp;+&nbsp;2&nbsp;*&nbsp;<tt>sub</tt>,&nbsp;<tt>sub</tt>);<br>
+<i class="num">&nbsp;33&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>drawGasket</tt>(<tt>x</tt>&nbsp;+&nbsp;2&nbsp;*&nbsp;<tt>sub</tt>,&nbsp;<tt>y</tt>&nbsp;+&nbsp;2&nbsp;*&nbsp;<tt>sub</tt>,&nbsp;<tt>sub</tt>);<br>
+<i class="num">&nbsp;34&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<i class="num">&nbsp;35&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<i class="num">&nbsp;36&nbsp;</i>&nbsp;}<br>
+</code>
+</blockquote>
+
+<h2><a name="4"></a>18.4. Tree</h2>
+
+<p>One very nice fractal worth looking at is the tree-like one
+appearing in <a href="http://www.toves.org/books/java/ch18-recurex/index.html#fig5">Figure 18.5</a>. Unfortunately, our presentation
+will only make sense if you're familiar with the sines and cosines of
+trigonometry; but if you understand them, this is worth your while.</p>
+
+<a name="fig5"></a><blockquote class="figure">
+<p class="caption"><span class="caption"><b>Figure 18.5:</b> Running <code class="j"><tt>Tree</tt></code>.</span></p>
+<img src="./examples_files/shot-Tree.png" width="229" height="240">
+</blockquote>
+
+<p>Looking at <a href="http://www.toves.org/books/java/ch18-recurex/index.html#fig5">Figure 18.5</a>, you'll notice that the tree
+consists of a trunk and two branches. Each branch is appears exactly the
+same as the overall tree, but smaller and rotated a bit.</p>
+
+<p>In our implementation of <a href="http://www.toves.org/books/java/ch18-recurex/index.html#fig6">Figure 18.6</a>, our recursive
+method will take four parameters to indicate the trunk of the tree to be
+drawn. (Below the top level of the recursion, the trunk will in fact be
+the base of the branch being drawn.)
+These four parameters indicate the <var>x</var>- and
+<var>y</var>-coordinates of the trunk's base, the length of the trunk,
+and the angle of the trunk.</p>
+
+<p>The recursive method's base case will be when the length is at most
+2&nbsp;pixels.  In this case, there is not an interesting tree to be
+drawn, so the method returns immediately. But if the length is more than
+2&nbsp;pixels, the method will compute the coordinates of the trunk's
+other end of the trunk by applying basic trigonometry.
+To compute the cosine and sine of the trunk's angle, the method use the
+static methods <code class="j"><tt>cosDegrees</tt></code> and <code class="j"><tt>sinDegrees</tt></code> found in the
+<code class="j"><tt>acm</tt>.<tt>graphics</tt></code> package's <code class="j"><tt>GMath</tt></code> class.
+After computing the coordinates of the trunk's other end, the method 
+adds a line corresponding to the trunk.
+And then it makes two recursive calls to draw each branch.
+Both branches are slightly smaller than the overall tree (75% in the
+case of the left branch and 66% in the case of the right), and at
+rotated at an angle from the trunk (30° counterclockwise for the
+left branch, 50° clockwise for the right).</p>
+
+<a name="fig6"></a><blockquote class="listing">
+<p class="caption"><span class="caption"><b>Figure 18.6:</b> The <code class="j"><tt>Tree</tt></code> program.</span></p>
+<code class="j"><i class="num">&nbsp;&nbsp;1&nbsp;</i>&nbsp;<b>import</b>&nbsp;<tt>java</tt>.<tt>awt</tt>.*;<br>
+<i class="num">&nbsp;&nbsp;2&nbsp;</i>&nbsp;<b>import</b>&nbsp;<tt>acm</tt>.<tt>program</tt>.*;<br>
+<i class="num">&nbsp;&nbsp;3&nbsp;</i>&nbsp;<b>import</b>&nbsp;<tt>acm</tt>.<tt>graphics</tt>.*;<br>
+<i class="num">&nbsp;&nbsp;4&nbsp;</i>&nbsp;<br>
+<i class="num">&nbsp;&nbsp;5&nbsp;</i>&nbsp;<b>public</b>&nbsp;<b>class</b>&nbsp;<tt>Tree</tt>&nbsp;<b>extends</b>&nbsp;<tt>GraphicsProgram</tt>&nbsp;{<br>
+<i class="num">&nbsp;&nbsp;6&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>public</b>&nbsp;<b>void</b>&nbsp;<tt>run</tt>()&nbsp;{<br>
+<i class="num">&nbsp;&nbsp;7&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>drawTree</tt>(120,&nbsp;200,&nbsp;50,&nbsp;90);<br>
+<i class="num">&nbsp;&nbsp;8&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<i class="num">&nbsp;&nbsp;9&nbsp;</i>&nbsp;<br>
+<i class="num">&nbsp;10&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>public</b>&nbsp;<b>void</b>&nbsp;<tt>drawTree</tt>(<b>double</b>&nbsp;<tt>x0</tt>,&nbsp;<b>double</b>&nbsp;<tt>y0</tt>,&nbsp;<b>double</b>&nbsp;<tt>len</tt>,&nbsp;<b>double</b>&nbsp;<tt>angle</tt>)&nbsp;{<br>
+<i class="num">&nbsp;11&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b>(<tt>len</tt>&nbsp;&gt;&nbsp;2)&nbsp;{<br>
+<i class="num">&nbsp;12&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>double</b>&nbsp;<tt>x1</tt>&nbsp;=&nbsp;<tt>x0</tt>&nbsp;+&nbsp;<tt>len</tt>&nbsp;*&nbsp;<tt>GMath</tt>.<tt>cosDegrees</tt>(<tt>angle</tt>);<br>
+<i class="num">&nbsp;13&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>double</b>&nbsp;<tt>y1</tt>&nbsp;=&nbsp;<tt>y0</tt>&nbsp;-&nbsp;<tt>len</tt>&nbsp;*&nbsp;<tt>GMath</tt>.<tt>sinDegrees</tt>(<tt>angle</tt>);<br>
+<i class="num">&nbsp;14&nbsp;</i>&nbsp;<br>
+<i class="num">&nbsp;15&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>add</tt>(<b>new</b>&nbsp;<tt>GLine</tt>(<tt>x0</tt>,&nbsp;<tt>y0</tt>,&nbsp;<tt>x1</tt>,&nbsp;<tt>y1</tt>));<br>
+<i class="num">&nbsp;16&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>drawTree</tt>(<tt>x1</tt>,&nbsp;<tt>y1</tt>,&nbsp;<tt>len</tt>&nbsp;*&nbsp;0.75,&nbsp;<tt>angle</tt>&nbsp;+&nbsp;30);<br>
+<i class="num">&nbsp;17&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tt>drawTree</tt>(<tt>x1</tt>,&nbsp;<tt>y1</tt>,&nbsp;<tt>len</tt>&nbsp;*&nbsp;0.66,&nbsp;<tt>angle</tt>&nbsp;-&nbsp;50);<br>
+<i class="num">&nbsp;18&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<i class="num">&nbsp;19&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<i class="num">&nbsp;20&nbsp;</i>&nbsp;}<br>
+</code>
+</blockquote>
+
+<p>Playing with the proportions and rotation factors in the recursive
+calls leads to other interesting tree variants.</p>
+<div id="footer">
+<p><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="./examples_files/somerights20.png"></a><br><span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" property="dc:title" rel="dc:type">Programming via Java</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share Alike 3.0 License</a>. <br>Based on a work at <a xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://www.toves.org/books/java/" rel="dc:source">http://www.toves.org/books/java/</a>.</p>
+</div>
+</div>
+<div id="cleardiv"></div>
+</div>
+
+
+</body></html>
