@@ -1,7 +1,7 @@
 /*
  * By Cole Hudson
  * Date: 4/14/2015
- * Purpose: 
+ * Purpose: Use Binary Search to sort through lists of music.
  * 
  * PMR in README.txt
  */
