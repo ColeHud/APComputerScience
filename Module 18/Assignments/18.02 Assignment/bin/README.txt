@@ -17,4 +17,5 @@ my screen wasn't bright enough.
 If I were to do this assignment again, I wouldn't change anything. 
 
 This past week, I studied with some fellow APCS students over Google Hangouts. We went over some free response
-questions, and tried handwriting some Java. In a few hours, I'll be hosting another one!
+questions, and tried handwriting some Java. In a few hours, I'll be hosting another one! It was a lot of fun, but
+we ended up staying up way too late.
